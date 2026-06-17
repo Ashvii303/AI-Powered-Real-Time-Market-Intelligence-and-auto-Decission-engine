@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Insights</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #0b1120;
+    color: white;
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background: linear-gradient(180deg, #020617, #0f172a);
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #6366f1;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+/* CARD */
+.card {
+    width: 450px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 25px;
+    border-radius: 15px;
+    margin: auto;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #6366f1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* GLOW */
+.glow {
+    color: #818cf8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>⚡ AI Market</h2>
+</div>
+
+<div class="main">
+
+    <h2>🤖 AI Insights</h2>
+
+    <div class="card">
+        <div id="output">⏳ Loading...</div>
+
+        <button onclick="goDash()">View Dashboard 📈</button>
+    </div>
+
+</div>
+
+<script>
+async function load(){
+
+    const res = await fetch("http://127.0.0.1:5000/predict", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            price:+localStorage.getItem("price"),
+            discount:+localStorage.getItem("discount"),
+            competitor_price:+localStorage.getItem("competitor_price")
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("output").innerHTML = `
+        <h2 class="glow">${data.predicted_demand.toFixed(2)}</h2>
+        <h3>${data.demand_level}</h3>
+        <ul>${data.recommendations.map(r=>`<li>${r}</li>`).join("")}</ul>
+    `;
+}
+
+function goDash(){
+    window.location.href = "dashboard.html";
+}
+
+load();
+</script>
+
+</body>
+</html>
