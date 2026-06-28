@@ -35,6 +35,7 @@ Superstore Dataset
 
 ## 📂 Project Structure
 
+```text
 AI-Market-Intelligence-Auto-Decision-Engine/
 │
 ├── data/
@@ -44,7 +45,7 @@ AI-Market-Intelligence-Auto-Decision-Engine/
 ├── web/
 ├── requirements.txt
 └── README.md
-
+```
 ## Future Improvements
 - Real-time data integration
 - Cloud deployment
