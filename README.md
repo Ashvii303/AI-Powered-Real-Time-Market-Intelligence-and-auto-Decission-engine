@@ -33,6 +33,18 @@ python app.py
 ## Dataset
 Superstore Dataset
 
+## 📂 Project Structure
+
+AI-Market-Intelligence-Auto-Decision-Engine/
+│
+├── data/
+├── images/
+├── model/
+├── notebook/
+├── web/
+├── requirements.txt
+└── README.md
+
 ## Future Improvements
 - Real-time data integration
 - Cloud deployment
